@@ -1,5 +1,6 @@
 from payment_card_identifier.constant import *
 import re
+import json
 
 
 class IllegalPaymentCardNumbers(Exception):
@@ -41,6 +42,11 @@ class PaymentCard:
         :rtype: bool
         """
         return NotImplemented
+
+    @property
+    def json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 
 
 class VISA(PaymentCard):
