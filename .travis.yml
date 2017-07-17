@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7-dev" # 3.7 development branch
+# command to install dependencies
+install:
+  - pip install nose Faker codecov
+  - python setup.py install
+# command to run tests
+script:
+  - "nosetests --with-coverage --cover-package=payment_card_identifier test/*.py"
+after_success:
+  - codecov
