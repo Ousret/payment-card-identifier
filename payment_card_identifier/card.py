@@ -45,7 +45,7 @@ class PaymentCard:
 
     @property
     def json(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
+        return json.dumps(self, default=lambda o: o.__dict__ if not isinstance(o, re._pattern_type) else o.pattern,
                           sort_keys=True, indent=4)
 
 
