@@ -13,6 +13,14 @@ class TestCardIdentifier(TestCase):
         self.assertIsInstance(CardIdentifier.from_numbers('4716737564983025'), VISA)
         self.assertIsInstance(CardIdentifier.from_numbers('4532725361000038'), VISA)
 
+        visa_card_numbers = '4532725361000038'
+
+        for i in range(16, 0):
+            if i > 0:
+                self.assertIsNone(CardIdentifier.from_numbers(visa_card_numbers[i:]))
+            else:
+                self.assertIsNotNone(CardIdentifier.from_numbers(visa_card_numbers[i:]))
+
     def test_master_card_identifier(self):
 
         self.assertIsInstance(CardIdentifier.from_numbers('5550748741608464'), MasterCard)
@@ -28,6 +36,11 @@ class TestCardIdentifier(TestCase):
         self.assertIsInstance(CardIdentifier.from_numbers('371200898558785'), Amex)
         self.assertIsInstance(CardIdentifier.from_numbers('343431456392573'), Amex)
         self.assertIsInstance(CardIdentifier.from_numbers('345697085612841'), Amex)
+
+    def test_unknown_sequence_identifier(self):
+
+        self.assertIsNone(CardIdentifier.from_numbers('0197287427'))
+        self.assertIsNone(CardIdentifier.from_numbers('ABCHDKQDJ'))
 
 if __name__ == '__main__':
     main()

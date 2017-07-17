@@ -8,9 +8,9 @@ class CardIdentifier:
     def from_numbers(numbers):
         """
         Try to identify and create instance of card.
-        :param numbers: Card numbers
-        :return: VISA, MasterCard, Amex instance or List of match
-        :rtype: card.PaymentCard|list
+        :param str numbers: Card numbers
+        :return: An VISA, MasterCard, Amex, etc.. instance, List of match or None.
+        :rtype: card.PaymentCard|list|None
         """
         cards = card.PaymentCard.__subclasses__()
         matchs = []
@@ -22,5 +22,6 @@ class CardIdentifier:
             except IllegalPaymentCardNumbers:
                 pass
 
-        return matchs.pop() if len(matchs) == 1 else matchs
+        nb_match = len(matchs)
 
+        return matchs.pop() if nb_match == 1 else matchs if nb_match > 1 else None
