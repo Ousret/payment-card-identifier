@@ -1,4 +1,4 @@
-payment-card-identifier
+payment-card-identifier [![Build Status](https://travis-ci.org/Ousret/payment-card-identifier.svg?branch=master)](https://travis-ci.org/Ousret/payment-card-identifier) [![codecov](https://codecov.io/gh/Ousret/payment-card-identifier/branch/master/graph/badge.svg)](https://codecov.io/gh/Ousret/payment-card-identifier)
 -----------------------
 
 Payment card identifier provides a useful utility method for determining a credit card type from both fully qualified and partial numbers.
