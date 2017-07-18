@@ -7,6 +7,10 @@ class IllegalPaymentCardNumbers(Exception):
     pass
 
 
+class LuhnChecksumDoesNotMatchException(IllegalPaymentCardNumbers):
+    pass
+
+
 class PaymentCard:
 
     def __init__(self, name, regex, numbers):
@@ -22,6 +26,8 @@ class PaymentCard:
 
         if not self.is_valid:
             raise IllegalPaymentCardNumbers('"{0}" are not valid numbers for {1} card type.'.format(self._numbers, self._name))
+        if not self.luhn_verify():
+            raise LuhnChecksumDoesNotMatchException('"{0}" does not pass luhn mod-10 checksum for {1} card type.'.format(self._numbers, self._name))
 
     @property
     def name(self):
@@ -33,15 +39,30 @@ class PaymentCard:
 
     @property
     def is_valid(self):
+        
         return self._regex.fullmatch(self._numbers) is not None
 
-    def c_verify(self):
+    def luhn_verify(self):
         """
         Custom verification for card numbers.
         :return: True if passed, False otherwise.
         :rtype: bool
         """
-        return NotImplemented
+        sum = 0
+        num_digits = len(self._numbers)
+        oddeven = num_digits & 1
+
+        for count in range(0, num_digits):
+            digit = int(self._numbers[count])
+
+            if not ((count & 1) ^ oddeven):
+                digit = digit * 2
+            if digit > 9:
+                digit = digit - 9
+
+            sum += digit
+
+        return (sum % 10) == 0
 
     @property
     def json(self):
