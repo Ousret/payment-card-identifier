@@ -1,5 +1,4 @@
-from payment_card_identifier import card
-from payment_card_identifier.card import IllegalPaymentCardNumbers
+from payment_card_identifier.card import PaymentCard, IllegalPaymentCardNumbers
 
 
 class CardIdentifier:
@@ -10,9 +9,9 @@ class CardIdentifier:
         Try to identify and create instance of card.
         :param str numbers: Card numbers
         :return: An VISA, MasterCard, Amex, etc.. instance, List of match or None.
-        :rtype: card.PaymentCard|list|None
+        :rtype: PaymentCard|list|None
         """
-        cards = card.PaymentCard.__subclasses__()
+        cards = PaymentCard.__subclasses__()
         matchs = []
 
         for card_type in cards:
