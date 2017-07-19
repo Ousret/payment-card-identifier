@@ -4,6 +4,22 @@ payment-card-identifier [![Build Status](https://travis-ci.org/Ousret/payment-ca
 Payment card identifier provides a useful utility method for determining a credit card type from both fully qualified numbers.
 Same as braintree/credit-card-type but in Python.
 
+#### Installation
+
+##### From PyPi
+
+```sh
+$ pip install payment-card-identifier
+```
+
+##### From git-master
+
+```sh
+$ git clone https://github.com/Ousret/payment-card-identifier.git
+$ cd payment-card-identifier
+$ python setup.py install
+```
+
 #### How to
 
 ```python

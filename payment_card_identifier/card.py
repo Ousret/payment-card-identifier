@@ -15,9 +15,9 @@ class PaymentCard:
 
     def __init__(self, name, regex, numbers):
         """
-        :param str name:
-        :param str regex:
-        :param str numbers:
+        :param str name: 'Brand name' or type of the card.
+        :param str regex: Used regex to verify numbers
+        :param str numbers: Fully qualified card numbers
         """
 
         self._name = name
@@ -26,7 +26,7 @@ class PaymentCard:
 
         if not self.is_valid:
             raise IllegalPaymentCardNumbers('"{0}" are not valid numbers for {1} card type.'.format(self._numbers, self._name))
-        if not self.luhn_verify():
+        if not PaymentCard.luhn_verify(self._numbers):
             raise LuhnChecksumDoesNotMatchException('"{0}" does not pass luhn mod-10 checksum for {1} card type.'.format(self._numbers, self._name))
 
     @property
@@ -39,30 +39,31 @@ class PaymentCard:
 
     @property
     def is_valid(self):
-
         return self._regex.fullmatch(self._numbers) is not None
 
-    def luhn_verify(self):
+    @staticmethod
+    def luhn_verify(numbers):
         """
         Custom verification for card numbers.
+        :param str numbers: Fully qualified card numbers
         :return: True if passed, False otherwise.
         :rtype: bool
         """
-        sum = 0
-        num_digits = len(self._numbers)
+        v_sum = 0
+        num_digits = len(numbers)
         oddeven = num_digits & 1
 
         for count in range(0, num_digits):
-            digit = int(self._numbers[count])
+            digit = int(numbers[count])
 
             if not ((count & 1) ^ oddeven):
                 digit = digit * 2
             if digit > 9:
                 digit = digit - 9
 
-            sum += digit
+            v_sum += digit
 
-        return (sum % 10) == 0
+        return (v_sum % 10) == 0
 
     @property
     def json(self):
