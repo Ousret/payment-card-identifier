@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='payment-card-identifier',
-    version='0.1.0',
+    version='0.1.1',
     author='Ahmed TAHRI, @Ousret',
     author_email='ahmed@tahri.space',
     description='Payment card identifier provides a useful utility method for determining a credit card type '
@@ -12,7 +12,7 @@ setup(
     packages=['payment_card_identifier'],
     test_suite='test',
     url='https://github.com/Ousret/payment-card-identifier',
-    download_url='https://github.com/Ousret/payment-card-identifier/archive/0.1.0.tar.gz',
+    download_url='https://github.com/Ousret/payment-card-identifier/archive/0.1.1.tar.gz',
     install_requires=[],
     tests_require=['Faker'],
     keywords=['payment', 'credit card', 'debit card', 'visa', 'mastercard', 'merchant', 'pos', 'amex',

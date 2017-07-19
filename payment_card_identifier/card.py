@@ -38,6 +38,19 @@ class PaymentCard:
         return self._regex
 
     @property
+    def numbers(self):
+        return self._numbers
+
+    def masked_numbers(self, masked_char='X'):
+        """
+        Display masked numbers, only show 4 last digits.
+        :param str masked_char: Used char to replace
+        :return: Masked numbers expect 4 last digits
+        :rtype: str
+        """
+        return (masked_char * (len(self.numbers) - 4)) + self.numbers[-4:]
+
+    @property
     def is_valid(self):
         return self._regex.fullmatch(self._numbers) is not None
 

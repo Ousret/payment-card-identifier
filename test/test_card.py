@@ -17,6 +17,8 @@ class TestCard(TestCase):
         self.assertIsNotNone(my_card.json)
         self.assertIsInstance(my_card.json, str)
         self.assertIsInstance(my_card.regex, re._pattern_type)
+        self.assertEqual(my_card.numbers, '4532040524589053')
+        self.assertEqual(my_card.masked_numbers(), 'XXXXXXXXXXXX9053')
 
     def test_card_base_properties(self):
 
