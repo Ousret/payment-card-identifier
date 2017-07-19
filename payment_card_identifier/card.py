@@ -39,7 +39,7 @@ class PaymentCard:
 
     @property
     def is_valid(self):
-        
+
         return self._regex.fullmatch(self._numbers) is not None
 
     def luhn_verify(self):
