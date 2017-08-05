@@ -52,7 +52,8 @@ class PaymentCard(object):
 
     @property
     def is_valid(self):
-        return self._regex.fullmatch(self._numbers) is not None
+        rmatch = self._regex.match(self._numbers)
+        return rmatch is not None and rmatch.group(0) == self._numbers
 
     @staticmethod
     def luhn_verify(numbers):
