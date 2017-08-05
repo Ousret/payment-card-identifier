@@ -1,9 +1,7 @@
 language: python
 python:
-  - "3.4"
-  - "3.5"
+  - "2.7.12"
   - "3.6"
-  - "3.7-dev" # 3.7 development branch
 # command to install dependencies
 install:
   - pip install nose Faker codecov

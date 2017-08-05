@@ -11,7 +11,7 @@ class LuhnChecksumDoesNotMatchException(IllegalPaymentCardNumbers):
     pass
 
 
-class PaymentCard:
+class PaymentCard(object):
 
     def __init__(self, name, regex, numbers):
         """
